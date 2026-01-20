@@ -1,0 +1,23 @@
+name: Deployment pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  simple_deployment_pipeline:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v4 # can call previously made public actions
+      - uses: actions/setup-node@v4
+        # allows the action to have a parameter, in this case adds the parameter to include the node-version to be 20
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        # after installing node, we can install the dependencies needed for the application
+        run: npm install
+      - name: Check style
+        # after installing all the dependencies, we can run specific commands for our workflow, in this case checking code style
+        run: npm run eslint
+        
