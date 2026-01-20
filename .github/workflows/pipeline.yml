@@ -17,7 +17,10 @@ jobs:
       - name: Install dependencies
         # after installing node, we can install the dependencies needed for the application
         run: npm install
-      - name: Check style
+      - name: lint
         # after installing all the dependencies, we can run specific commands for our workflow, in this case checking code style
         run: npm run eslint
-        
+      - name: build
+        run: npm run build
+      - name: test
+        run: npm run test
