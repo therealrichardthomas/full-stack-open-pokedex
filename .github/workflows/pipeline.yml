@@ -34,6 +34,7 @@ jobs:
 
   main: 
     name: Deploy to Render
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
