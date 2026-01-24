@@ -32,6 +32,13 @@ jobs:
       - name: e2e tests
         run: npm run test:e2e
 
+      - name: Discord Webhook Notify Failure
+        uses: sarisia/actions-status-discord@v1
+        if: failure()
+        with: 
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: Testing failure case
+
   main: 
     name: Deploy to Render
     needs: [simple_deployment_pipeline]
