@@ -58,7 +58,6 @@ jobs:
         if: failure()
         with: 
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          nocontext: true
           title: Build failed
       
 
