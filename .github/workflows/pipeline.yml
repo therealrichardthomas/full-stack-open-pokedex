@@ -32,22 +32,11 @@ jobs:
       - name: e2e tests
         run: npm run test:e2e
 
-      - name: Discord Webhook Notify Success
-        uses: rjstone/discord-webhook-notify@v2.2.1
-        if: success()
+      - name: Discord Webhook Notify
+        uses: sarisia/actions-status-discord@v1
+        if: always()
         with: 
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          severity: info
-          title: build deployed
-          details: All tests passed!
-      - name: Discord Webhook Notify Failure
-        uses: rjstone/discord-webhook-notify@v2.2.1
-        if: failure()
-        with: 
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          severity: error
-          title: build failed 
-          details: Build failed.
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
 
   main: 
     name: Deploy to Render
